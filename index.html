@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDDEN FASHION — Built Different | Kampala, Uganda</title>
+<meta name="description" content="EDDEN FASHION — Uganda's #1 streetwear label. Black & white tees, jackets, sweaters, caps. Durable. Affordable. Trademarked. Order now: 0707 146 478.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a; 
+    --panel:#131313;
+    --card:#181818;
+    --off:#ece9e1;
+    --white:#ffffff;
+    --stamp:#ff3b1f;
+    --stamp-dim: rgba(255,59,31,0.5);
+    --line: rgba(236,233,225,0.13);
+    --line-strong: rgba(236,233,225,0.26);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--off);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  ::selection{background:var(--stamp);color:var(--black);}
+
+  .display{font-family:'Anton',sans-serif; letter-spacing:0.01em;}
+  .black-display{font-family:'Archivo Black',sans-serif;}
+  .mono{font-family:'Space Mono',monospace;}
+
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px;}
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--stamp);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ============================================================
+     SIGNATURE BACKGROUND — diagonal stitch-lines from top-right,
+     fading out before they reach the bottom-left corner.
+     ============================================================ */
+  .bg-rig{
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  }
+  .bg-rig::before{
+    /* base tone: faint vignette so lines have somewhere to fade into */
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,59,31,0.10), transparent 42%),
+      radial-gradient(circle at 0% 100%, rgba(255,255,255,0.025), transparent 55%);
+  }
+  .diag-field{
+    position:absolute;
+    top:-10%; right:-15%;
+    width:135%; height:135%;
+    transform:rotate(34deg);
+    transform-origin: 100% 0%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(236,233,225,0.10) 0px,
+      rgba(236,233,225,0.10) 1px,
+      transparent 1px,
+      transparent 64px
+    );
+    /* fade so lines never reach the bottom-left */
+    -webkit-mask-image: linear-gradient(135deg, #000 0%, #000 38%, transparent 72%);
+            mask-image: linear-gradient(135deg, #000 0%, #000 38%, transparent 72%);
+  }
+  .diag-field.accent{
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--stamp-dim) 0px,
+      var(--stamp-dim) 1.5px,
+      transparent 1.5px,
+      transparent 320px
+    );
+    opacity:0.55;
+  }
+  .diag-corner-tag{
+    position:absolute; top:34px; right:-86px;
+    transform:rotate(34deg);
+    font-family:'Space Mono',monospace;
+    font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    color:rgba(236,233,225,0.16);
+    white-space:nowrap;
+  }
+  @media (max-width:760px){
+    .diag-field{top:-20%; right:-40%; width:180%; height:180%;}
+  }
+
+  /* ---------- top ticker ---------- */
+  .ticker-bar{
+    background:var(--off);
+    color:var(--black);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--black);
+    position:relative;
+    z-index:50;
+  }
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation: tickerScroll 26s linear infinite;
+  }
+  .ticker-track span{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    padding:8px 24px;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    white-space:nowrap;
+  }
+  .ticker-track span::after{content:"●"; font-size:7px; opacity:0.5;}
+  @keyframes tickerScroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,10,10,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 28px;
+    max-width:1240px; margin:0 auto;
+  }
+  .logo-mini{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    letter-spacing:0.03em;
+    background:none; border:none; color:var(--off); cursor:pointer;
+  }
+  .logo-mini .e-stamp{
+    width:30px;height:30px;
+    background:var(--stamp);
+    color:var(--black);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;
+    font-size:19px;
+    transform:rotate(-6deg);
+    clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:6px; align-items:center;}
+  .nav-links button{
+    font-size:12.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    opacity:0.72; transition:opacity .2s, color .2s, background .2s;
+    background:none; border:none; color:var(--off); cursor:pointer;
+    padding:9px 13px; border-radius:3px;
+  }
+  .nav-links button:hover{opacity:1; color:var(--off); background:rgba(255,255,255,0.05);}
+  .nav-links button.active{opacity:1; color:var(--black); background:var(--off);}
+  .nav-cta{
+    background:var(--stamp); color:var(--black) !important;
+    padding:10px 18px;
+    font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;
+    border-radius:3px;
+    transition:transform .15s ease, box-shadow .2s;
+    display:inline-flex; opacity:1 !important;
+  }
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(255,59,31,0.3); background:var(--stamp) !important;}
+  .nav-burger{display:none;}
+
+  @media (max-width: 900px){
+    .nav-links button:not(.nav-cta){display:none;}
+    .nav-burger{display:block; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; background:none; border:1px solid var(--line-strong); color:var(--off); padding:8px 13px; border-radius:3px; cursor:pointer;}
+  }
+  .mobile-menu{
+    display:none; flex-direction:column; gap:2px;
+    padding:10px 16px 16px; border-top:1px solid var(--line);
+    background:rgba(10,10,10,0.96);
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu button{
+    text-align:left; background:none; border:none; color:var(--off);
+    font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    padding:12px 8px; border-bottom:1px solid var(--line); opacity:0.8; cursor:pointer;
+  }
+  .mobile-menu button.active{opacity:1; color:var(--stamp);}
+
+  /* ---------- page panel system ---------- */
+  .page-panel{ display:none; }
+  .page-panel.active{ display:block; animation: panelIn .35s ease both; }
+  @keyframes panelIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:64px 28px 44px;
+    max-width:1240px; margin:0 auto;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:36px;
+    align-items:center;
+  }
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line-strong);
+    padding:6px 12px;
+    font-family:'Space Mono',monospace;
+    font-size:10.5px; letter-spacing:0.13em; text-transform:uppercase;
+    margin-bottom:18px;
+    color:var(--off);
+  }
+  .hero-tag .dot{width:6px;height:6px;background:var(--stamp);border-radius:50%;display:inline-block;}
+
+  .hero h1{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(46px, 7.4vw, 92px);
+    line-height:0.92;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    color:var(--white);
+  }
+  .hero h1 .accent{color:var(--stamp); -webkit-text-stroke:0px;}
+  .hero h1 .outline{
+    color:transparent;
+    -webkit-text-stroke: 2px var(--off);
+  }
+
+  .hero-sub{
+    margin-top:18px;
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:480px;
+    color:rgba(236,233,225,0.78);
+  }
+  .hero-sub strong{color:var(--off); font-weight:700;}
+
+  .hero-actions{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--stamp); color:var(--black);
+    padding:14px 26px;
+    font-weight:800; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    border-radius:3px;
+    display:inline-flex; align-items:center; gap:9px;
+    transition:transform .15s ease, box-shadow .2s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(255,59,31,0.28);}
+  .btn-ghost{
+    border:1px solid var(--line-strong);
+    padding:14px 22px;
+    font-weight:700; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    border-radius:3px;
+    transition:border-color .2s, background .2s;
+    background:none; color:var(--off); cursor:pointer;
+  }
+  .btn-ghost:hover{border-color:var(--off); background:rgba(255,255,255,0.04);}
+
+  .hero-stats{
+    display:flex; gap:22px; margin-top:30px;
+    flex-wrap:wrap;
+  }
+  .hero-stats div{font-family:'Space Mono',monospace;}
+  .hero-stats .num{font-size:22px; font-weight:700; color:var(--white); display:block;}
+  .hero-stats .lbl{font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(236,233,225,0.55);}
+
+  /* hero panel — typographic, no illustrated garments */
+  .hero-visual{
+    position:relative;
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    background:linear-gradient(165deg, rgba(255,255,255,0.035), transparent 60%);
+    padding:30px 26px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .hv-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-bottom:12px; border-bottom:1px solid var(--line);
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(236,233,225,0.55);
+  }
+  .hv-row:last-child{border-bottom:none; padding-bottom:0;}
+  .hv-row .v{color:var(--off); font-weight:700;}
+  .hv-row .v.x{color:var(--stamp);}
+  .hv-big{
+    text-align:center; padding:18px 0 6px;
+  }
+  .hv-big .e{
+    font-family:'Anton',sans-serif; font-size:64px; line-height:0.9; color:var(--white);
+  }
+  .hv-big .e span{color:var(--stamp);}
+  .hv-big small{
+    display:block; margin-top:6px; font-family:'Space Mono',monospace; font-size:10px;
+    letter-spacing:0.2em; text-transform:uppercase; color:rgba(236,233,225,0.5);
+  }
+
+  @media (max-width: 880px){
+    .hero{grid-template-columns:1fr; padding-top:36px;}
+  }
+
+  /* ---------- marquee divider ---------- */
+  .marquee{
+    background:var(--off);
+    color:var(--black);
+    border-top:1px solid var(--black);
+    border-bottom:1px solid var(--black);
+    overflow:hidden;
+    white-space:nowrap;
+    transform:rotate(-1deg);
+    margin:40px 0;
+  }
+  .marquee-track{
+    display:flex; width:max-content;
+    animation: tickerScroll 20s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(22px,3.6vw,38px);
+    text-transform:uppercase;
+    padding:10px 28px;
+    letter-spacing:0.01em;
+  }
+  .marquee-track span:nth-child(even){ color:var(--stamp); -webkit-text-stroke:0;}
+  .marquee-track span:nth-child(odd){ color:transparent; -webkit-text-stroke:1.4px var(--black);}
+
+  /* ---------- section heads ---------- */
+  .section{padding:54px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:20px; flex-wrap:wrap;
+    margin-bottom:30px;
+  }
+  .section-eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--stamp); margin-bottom:10px; display:block;
+  }
+  .section-head h2{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(28px, 4vw, 46px);
+    text-transform:uppercase;
+    line-height:1;
+    color:var(--white);
+  }
+  .section-head p{
+    max-width:340px;
+    font-size:13.5px;
+    color:rgba(236,233,225,0.65);
+    line-height:1.55;
+  }
+
+  /* ---------- promo strip (advertising banner) ---------- */
+  .promo-strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+    border-radius:4px; overflow:hidden; margin-top:26px;
+  }
+  @media (max-width:880px){ .promo-strip{grid-template-columns:repeat(2,1fr);} }
+  .promo-cell{
+    background:var(--panel); padding:16px 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .promo-cell .ic{font-size:18px;}
+  .promo-cell .t{font-family:'Archivo Black',sans-serif; font-size:11.5px; text-transform:uppercase; color:var(--white); line-height:1.25;}
+  .promo-cell .t small{display:block; font-family:'Space Mono',monospace; font-size:9.5px; color:rgba(236,233,225,0.5); text-transform:none; font-weight:400; margin-top:2px; letter-spacing:0.02em;}
+
+  /* ---------- collection grid (compact, no illustrations) ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  @media (max-width:980px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:540px){ .grid{grid-template-columns:1fr;} }
+
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .card:hover{ border-color:var(--stamp-dim); transform:translateY(-4px); }
+  .card-top{
+    display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;
+  }
+  .card-top .tag{
+    font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(236,233,225,0.5); border:1px solid var(--line); padding:3px 7px; border-radius:2px;
+  }
+  .card-top .price{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:13px; color:var(--stamp);
+  }
+  .card .name{
+    font-family:'Archivo Black',sans-serif;
+    font-size:14.5px; text-transform:uppercase; letter-spacing:0.01em;
+    color:var(--white); margin-bottom:6px;
+  }
+  .card .desc{
+    font-size:12px; color:rgba(236,233,225,0.6); line-height:1.5;
+    margin-bottom:12px;
+  }
+  .card .meta{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Space Mono',monospace; font-size:10px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(236,233,225,0.5);
+    padding-top:10px; border-top:1px solid var(--line);
+  }
+  .swatches{display:flex; gap:5px;}
+  .swatch{width:11px;height:11px;border-radius:50%; border:1px solid rgba(255,255,255,0.25);}
+  .swatch.b{background:#0a0a0a;}
+  .swatch.w{background:#ece9e1;}
+  .card .order-link{
+    margin-top:10px; display:block; text-align:center;
+    font-family:'Space Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--black); background:var(--off); padding:9px; border-radius:3px;
+    transition:background .2s;
+    border:none; cursor:pointer; width:100%;
+  }
+  .card .order-link:hover{background:var(--stamp);}
+
+  /* ---------- lookbook gallery (formerly raw <img> tags) ---------- */
+  .look-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  @media (max-width:980px){ .look-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:540px){ .look-grid{grid-template-columns:1fr;} }
+
+  .look-item{
+    position:relative;
+    margin:0;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .look-item:hover{ border-color:var(--stamp-dim); transform:translateY(-4px); }
+  .look-item img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    filter:grayscale(100%) contrast(1.06);
+    transition:filter .35s ease, transform .6s ease;
+  }
+  .look-item:hover img{ filter:grayscale(0%) contrast(1); transform:scale(1.04); }
+
+  /* graceful fallback when an image file isn't present yet */
+  .look-item .ph{
+    display:none;
+    aspect-ratio:4/5;
+    align-items:center; justify-content:center;
+    text-align:center; padding:16px;
+    font-family:'Space Mono',monospace;
+    font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(236,233,225,0.32);
+    background:repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 12px, transparent 12px 24px);
+  }
+  .look-item.img-missing img{ display:none; }
+  .look-item.img-missing .ph{ display:flex; }
+
+  .look-item figcaption{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding:11px 14px;
+    border-top:1px solid var(--line);
+    font-family:'Space Mono',monospace;
+    font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(236,233,225,0.5);
+  }
+  .look-item figcaption .ttl{ color:var(--off); font-weight:700; }
+
+  /* ---------- why us strip ---------- */
+  .why-strip{
+    background:var(--panel);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:48px 0;
+  }
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:4px; overflow:hidden;
+  }
+  @media (max-width:880px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  .why-cell{
+    background:var(--panel);
+    padding:24px 20px;
+  }
+  .why-cell .ix{
+    font-family:'Space Mono',monospace;
+    font-size:10.5px; color:var(--stamp); letter-spacing:0.08em;
+    margin-bottom:12px; display:block;
+  }
+  .why-cell h3{
+    font-family:'Archivo Black',sans-serif;
+    font-size:15.5px; text-transform:uppercase; color:var(--white);
+    margin-bottom:8px;
+  }
+  .why-cell p{
+    font-size:12.5px; line-height:1.55; color:rgba(236,233,225,0.62);
+  }
+
+  /* ---------- availability ---------- */
+  .avail{
+    display:grid; grid-template-columns:1fr 1fr; gap:36px;
+    align-items:center;
+  }
+  @media (max-width:880px){ .avail{grid-template-columns:1fr;} }
+  .avail-copy h2{
+    font-family:'Anton',sans-serif; font-size:clamp(26px,3.8vw,42px);
+    text-transform:uppercase; color:var(--white); line-height:1.04; margin-bottom:14px;
+  }
+  .avail-copy p{ font-size:14px; line-height:1.6; color:rgba(236,233,225,0.7); margin-bottom:10px; max-width:480px;}
+  .avail-list{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:9px;}
+  .avail-list li{
+    display:flex; align-items:center; gap:11px;
+    font-size:13px; font-weight:600; color:var(--off);
+  }
+  .avail-list .check{
+    width:18px;height:18px; background:var(--stamp); color:var(--black);
+    display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:900;
+    flex-shrink:0; border-radius:2px;
+  }
+  .map-card{
+    background:var(--card); border:1px solid var(--line); border-radius:5px;
+    padding:24px; position:relative; overflow:hidden;
+  }
+  .map-card .pin-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px;
+  }
+  .pin{
+    border:1px solid var(--line); padding:12px 10px; text-align:center; border-radius:3px;
+    transition:border-color .2s;
+  }
+  .pin:hover{border-color:var(--stamp);}
+  .pin .city{font-family:'Archivo Black',sans-serif; font-size:12px; color:var(--off); text-transform:uppercase;}
+  .pin .tag{font-family:'Space Mono',monospace; font-size:8.5px; color:rgba(236,233,225,0.5); letter-spacing:0.06em; margin-top:3px; display:block;}
+  .map-card .loc-badge{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--stamp); margin-bottom:5px;
+  }
+  .map-card h3{ font-family:'Anton',sans-serif; font-size:24px; color:var(--white); text-transform:uppercase;}
+
+  /* ---------- authenticity ---------- */
+  .authentic{
+    background:var(--off); color:var(--black);
+    border-radius:6px;
+    padding:40px 36px;
+    position:relative;
+    overflow:hidden;
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:30px; align-items:center;
+  }
+  @media (max-width:880px){ .authentic{grid-template-columns:1fr; padding:32px 22px;} }
+  .authentic::before{
+    content:"™";
+    position:absolute; right:-20px; bottom:-50px;
+    font-family:'Anton',sans-serif; font-size:260px; opacity:0.05; pointer-events:none;
+  }
+  .authentic .section-eyebrow{color:#b3300f;}
+  .authentic h2{
+    font-family:'Anton',sans-serif; font-size:clamp(26px,3.6vw,38px);
+    text-transform:uppercase; line-height:1.02; margin-bottom:12px;
+  }
+  .authentic p{ font-size:13.5px; line-height:1.6; color:rgba(10,10,10,0.72); max-width:460px;}
+  .seal{
+    width:100%; max-width:190px; aspect-ratio:1/1; margin:0 auto;
+    border:2px dashed rgba(10,10,10,0.35); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .seal-inner{
+    width:78%; aspect-ratio:1/1; border-radius:50%;
+    background:var(--black); color:var(--off);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:3px;
+    transform:rotate(-8deg);
+  }
+  .seal-inner .e{ font-family:'Anton',sans-serif; font-size:34px; line-height:1;}
+  .seal-inner small{ font-family:'Space Mono',monospace; font-size:7.5px; letter-spacing:0.1em; text-transform:uppercase; opacity:0.7;}
+
+  /* ---------- testimonials ---------- */
+  .proof-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  }
+  @media (max-width:880px){ .proof-grid{grid-template-columns:1fr;} }
+  .proof-card{
+    background:var(--card); border:1px solid var(--line); border-radius:4px; padding:20px;
+  }
+  .proof-card .stars{ color:var(--stamp); font-size:13px; letter-spacing:2px; margin-bottom:10px;}
+  .proof-card p{ font-size:13px; line-height:1.6; color:rgba(236,233,225,0.78); margin-bottom:14px;}
+  .proof-card .who{ display:flex; align-items:center; gap:9px;}
+  .who-avatar{
+    width:30px;height:30px;border-radius:50%; background:var(--off); color:var(--black);
+    display:flex; align-items:center; justify-content:center; font-family:'Archivo Black',sans-serif; font-size:12px;
+  }
+  .who-name{font-size:12.5px; font-weight:700; color:var(--off);}
+  .who-loc{font-family:'Space Mono',monospace; font-size:10px; color:rgba(236,233,225,0.5);}
+
+  /* ---------- CTA / contact ---------- */
+  .cta-block{
+    background: linear-gradient(160deg, #161616, #0a0a0a);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:46px 36px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  @media (max-width:600px){ .cta-block{padding:36px 20px;} }
+  .cta-block h2{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(30px,5vw,58px);
+    text-transform:uppercase;
+    color:var(--white);
+    line-height:0.98;
+  }
+  .cta-block h2 .x{color:var(--stamp);}
+  .cta-block .sub{ font-size:13.5px; color:rgba(236,233,225,0.65); margin:14px auto 26px; max-width:460px;}
+  .contact-row{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  }
+  .contact-pill{
+    display:inline-flex; align-items:center; gap:9px;
+    border:1px solid var(--line-strong); padding:12px 20px; border-radius:30px;
+    font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.03em;
+    background:none; color:var(--off); cursor:default;
+  }
+  .contact-pill.phone{ background:var(--stamp); color:var(--black); border-color:var(--stamp); font-weight:700; cursor:pointer;}
+
+  /* ---------- mini page header (used on Shop/About/Contact panels) ---------- */
+  .page-head{
+    padding:40px 0 6px;
+  }
+  .page-head .section-eyebrow{margin-bottom:8px;}
+  .page-head h1{
+    font-family:'Anton',sans-serif; font-size:clamp(34px,5.4vw,62px);
+    text-transform:uppercase; color:var(--white); line-height:0.96;
+  }
+  .page-head p{ font-size:14px; color:rgba(236,233,225,0.65); max-width:520px; margin-top:12px; line-height:1.6;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0 22px;
+    position:relative; z-index:1;
+  }
+  .foot-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;
+    margin-bottom:26px;
+  }
+  .foot-brand{font-family:'Anton',sans-serif; font-size:23px; text-transform:uppercase; color:var(--white);}
+  .foot-brand span{color:var(--stamp);}
+  .foot-tag{ font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:rgba(236,233,225,0.5); margin-top:6px; text-transform:uppercase;}
+  .foot-cols{display:flex; gap:42px; flex-wrap:wrap;}
+  .foot-col h4{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--off); margin-bottom:11px;}
+  .foot-col button, .foot-col span{display:block; font-size:12.5px; color:rgba(236,233,225,0.6); margin-bottom:8px; background:none; border:none; padding:0; text-align:left; cursor:pointer; font-family:'Inter',sans-serif;}
+  .foot-col button:hover{color:var(--stamp);}
+  .foot-bottom{
+    border-top:1px solid var(--line); padding-top:18px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-family:'Space Mono',monospace; font-size:10.5px; color:rgba(236,233,225,0.45);
+    letter-spacing:0.03em;
+  }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  main{ position:relative; z-index:1; }
+</style>
+</head>
+<body>
+
+  <!-- signature diagonal-line background, top-right origin, fades before bottom-left -->
+  <div class="bg-rig" aria-hidden="true">
+    <div class="diag-field"></div>
+    <div class="diag-field accent"></div>
+    <div class="diag-corner-tag">EDDEN FASHION ™ — KAMPALA, UGANDA — BUILT DIFFERENT — EDDEN FASHION ™</div>
+  </div>
+
+  <div class="ticker-bar">
+    <div class="ticker-track" id="tickerTrack">
+      <span>EDDEN FASHION — REGISTERED TRADEMARK ™</span>
+      <span>NATIONWIDE DELIVERY AVAILABLE</span>
+      <span>BUY 2 GET FREE DELIVERY IN KAMPALA</span>
+      <span>NOW IN EVERY MAJOR MARKET ACROSS UGANDA</span>
+      <span>EDDEN FASHION — REGISTERED TRADEMARK ™</span>
+      <span>NATIONWIDE DELIVERY AVAILABLE</span>
+      <span>BUY 2 GET FREE DELIVERY IN KAMPALA</span>
+      <span>NOW IN EVERY MAJOR MARKET ACROSS UGANDA</span>
+    </div>
+  </div>
+
+  <header>
+    <nav aria-label="Main">
+      <button class="logo-mini" data-page="home" onclick="gotoPage('home')" aria-label="EDDEN Fashion — go to home">
+        <span class="e-stamp" aria-hidden="true">E</span>
+        EDDEN
+      </button>
+      <div class="nav-links" id="navLinks">
+        <button data-page="home" onclick="gotoPage('home')">Home</button>
+        <button data-page="shop" onclick="gotoPage('shop')">Shop</button>
+        <button data-page="why" onclick="gotoPage('why')">Why Edden</button>
+        <button data-page="stockists" onclick="gotoPage('stockists')">Stockists</button>
+        <button data-page="contact" onclick="gotoPage('contact')" class="nav-cta">Order Now</button>
+      </div>
+      <button class="nav-burger" id="navBurger" onclick="toggleMobileMenu()" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <button data-page="home" onclick="gotoPage('home')">Home</button>
+      <button data-page="shop" onclick="gotoPage('shop')">Shop</button>
+      <button data-page="why" onclick="gotoPage('why')">Why Edden</button>
+      <button data-page="stockists" onclick="gotoPage('stockists')">Stockists</button>
+      <button data-page="contact" onclick="gotoPage('contact')">Order Now</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HOME PAGE ================= -->
+    <section class="page-panel active" id="page-home" data-page="home">
+
+      <div class="hero">
+        <div>
+          <div class="hero-tag"><span class="dot"></span> KAMPALA, UGANDA — EST. 2026</div>
+          <h1>
+            BUILT<br>
+            <span class="outline">DIFF</span><span class="accent">ERENT</span>.
+          </h1>
+          <p class="hero-sub">
+            <strong>EDDEN FASHION</strong> is Uganda's fastest-growing streetwear label — tees, jackets, sweaters and caps in black &amp; white, stamped with a mark people already recognise on the street. Heavyweight fabric. Honest prices. Zero imitations.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="gotoPage('contact')">Order via 0707 146 478 →</button>
+            <button class="btn-ghost" onclick="gotoPage('shop')">Browse The Shop</button>
+          </div>
+          <div class="hero-stats">
+            <div><span class="num">100%</span><span class="lbl">Black &amp; White Core</span></div>
+            <div><span class="num">256+</span><span class="lbl">Stockists Nationwide</span></div>
+            <div><span class="num">™ 2026</span><span class="lbl">Registered &amp; Protected</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hv-row"><span>Status</span><span class="v x">SELLING FAST</span></div>
+          <div class="hv-row"><span>Delivery</span><span class="v">NATIONWIDE</span></div>
+          <div class="hv-row"><span>Stock</span><span class="v">RESTOCKED WEEKLY</span></div>
+          <div class="hv-big">
+            <div class="e">EDD<span>E</span>N</div>
+            <small>Registered Trademark · Uganda</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>EDDEN</span><span>BUILT DIFFERENT</span><span>EDDEN</span><span>BUILT DIFFERENT</span>
+          <span>EDDEN</span><span>BUILT DIFFERENT</span><span>EDDEN</span><span>BUILT DIFFERENT</span>
+        </div>
+      </div>
+
+      <!-- ADVERTISING / PROMO STRIP -->
+      <div class="wrap">
+        <div class="promo-strip reveal">
+          <div class="promo-cell"><span class="ic">🚚</span><span class="t">Free Delivery<small>On orders 2+ items, Kampala</small></span></div>
+          <div class="promo-cell"><span class="ic">⚡</span><span class="t">Same-Week Restock<small>Never out of your size for long</small></span></div>
+          <div class="promo-cell"><span class="ic">🛡️</span><span class="t">100% Original<small>Registered trademark, no fakes</small></span></div>
+          <div class="promo-cell"><span class="ic">💸</span><span class="t">Street Prices<small>Latest fashion, fair cost</small></span></div>
+        </div>
+      </div>
+
+      <!-- FEATURED PREVIEW -->
+      <section class="section wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-eyebrow">/// Best Sellers</span>
+            <h2>Wear The<br>Mark.</h2>
+          </div>
+          <p>Every piece in black or white, every piece carrying the EDDEN stamp. Tap any item for full details on the Shop page.</p>
+        </div>
+
+        <div class="grid">
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">CORE TEE</span><span class="price">UGX 35K</span></div>
+            <div class="name">Stamp Tee — Black</div>
+            <div class="desc">Heavyweight cotton, EDDEN stamp across the chest. Our #1 seller, month after month.</div>
+            <div class="meta"><span>S–XXL</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <button class="order-link" onclick="gotoPage('shop')">View In Shop</button>
+          </div>
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">OUTERWEAR</span><span class="price">UGX 120K</span></div>
+            <div class="name">Crate Bomber Jacket</div>
+            <div class="desc">All-black bomber, EDDEN crest on the back. Boda-ready, weatherproofed seams.</div>
+            <div class="meta"><span>M–XXL</span><span class="swatches"><i class="swatch b"></i></span></div>
+            <button class="order-link" onclick="gotoPage('shop')">View In Shop</button>
+          </div>
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">KNITWEAR</span><span class="price">UGX 95K</span></div>
+            <div class="name">Warehouse Sweater</div>
+            <div class="desc">Ribbed crewneck, chest logo. Built for Kampala's cool nights and early mornings.</div>
+            <div class="meta"><span>S–XL</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <button class="order-link" onclick="gotoPage('shop')">View In Shop</button>
+          </div>
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">HEADWEAR</span><span class="price">UGX 30K</span></div>
+            <div class="name">Stencil Snapback</div>
+            <div class="desc">Structured cap, embroidered front panel. The easiest way to rep EDDEN daily.</div>
+            <div class="meta"><span>One size</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <button class="order-link" onclick="gotoPage('shop')">View In Shop</button>
+          </div>
+        </div>
+
+       <img src="jacket.jpg"  width="400" height=400" style="border-radius: 15px;">
+       <img src="combos.jpg"  width="400" height=480" style="border-radius: 15px;">   <br>
+       <img src="shoes.jpg"  width="400" height=400"  style="border-radius: 15px;">
+       <img src="behind.png"  width="400" height=450" style="border-radius: 15px;">   <br>
+       <h1 style="color: red;"> You can also grab one now; </h1> 	<br>
+       <img src="live.png"  width="400" height=450" style="border-radius: 15px;">
+       <img src="seated.png"  width="400" height=450" style="border-radius: 15px;">
+
+
+
+
+
+
+
+
+
+
+
+      </section>
+
+      <!-- ============ LOOKBOOK GALLERY (styled images) ============ -->
+      <section class="section wrap" style="padding-top:0;">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-eyebrow">/// Lookbook</span>
+            <h2>On The Street.<br>In The Wild.</h2>
+          </div>
+          <p>Real EDDEN pieces, shot the way they're worn — jackets, footwear and full combos straight from the collection.</p>
+        </div>
+
+        <div class="look-grid reveal">
+          <figure class="look-item">
+            <img src="jacket.jpg" alt="EDDEN Fashion jacket on the street" loading="lazy" decoding="async"
+                 onerror="this.closest('.look-item').classList.add('img-missing')">
+            <div class="ph" aria-hidden="true">EDDEN LOOKBOOK</div>
+            <figcaption><span class="ttl">The Jacket</span><span>Outerwear</span></figcaption>
+          </figure>
+
+          <figure class="look-item">
+            <img src="shoes.jpg" alt="EDDEN Fashion footwear pairing" loading="lazy" decoding="async"
+                 onerror="this.closest('.look-item').classList.add('img-missing')">
+            <div class="ph" aria-hidden="true">EDDEN LOOKBOOK</div>
+            <figcaption><span class="ttl">The Kicks</span><span>Footwear</span></figcaption>
+          </figure>
+
+          <figure class="look-item">
+            <img src="combos.jpg" alt="EDDEN Fashion full outfit combo" loading="lazy" decoding="async"
+                 onerror="this.closest('.look-item').classList.add('img-missing')">
+            <div class="ph" aria-hidden="true">EDDEN LOOKBOOK</div>
+            <figcaption><span class="ttl">The Combo</span><span>Full Fit</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- WHY EDDEN PREVIEW -->
+      <section class="why-strip" id="why-preview">
+        <div class="wrap">
+          <div class="section-head reveal" style="margin-bottom:26px;">
+            <div>
+              <span class="section-eyebrow">/// The Standard</span>
+              <h2>Why Uganda<br>Wears Edden.</h2>
+            </div>
+            <p>The short version. <button class="btn-ghost" style="padding:8px 14px; font-size:11px; margin-top:6px;" onclick="gotoPage('why')">Full Story →</button></p>
+          </div>
+          <div class="why-grid reveal">
+            <div class="why-cell">
+              <span class="ix">DURABLE</span>
+              <h3>Built To Last</h3>
+              <p>Heavyweight fabric, reinforced stitching. Survives the boda ride, the market crowd, the wash.</p>
+            </div>
+            <div class="why-cell">
+              <span class="ix">AFFORDABLE</span>
+              <h3>Priced Fair</h3>
+              <p>Latest fashion shouldn't cost a fortune — we keep prices fair without cutting quality.</p>
+            </div>
+            <div class="why-cell">
+              <span class="ix">EVERYWHERE</span>
+              <h3>In Every Market</h3>
+              <p>Boutiques to open markets nationwide. If it's stocked near you, EDDEN is probably there.</p>
+            </div>
+            <div class="why-cell">
+              <span class="ix">ORIGINAL</span>
+              <h3>Trademarked</h3>
+              <p>Every piece carries our protected mark. Accept no copies — look for the stamp.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-eyebrow">/// Straight From The Street</span>
+            <h2>Built Different.<br>Said By You.</h2>
+          </div>
+        </div>
+        <div class="proof-grid">
+          <div class="proof-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>I bought the EDDEN tee from a stall in Owino and people keep asking where I got it. Quality is real, not the usual market fabric.</p>
+            <div class="who"><div class="who-avatar">D</div><div><div class="who-name">Derrick O.</div><div class="who-loc">Kampala</div></div></div>
+          </div>
+          <div class="proof-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>The bomber jacket has survived two rainy seasons and still looks new. EDDEN is genuinely built different.</p>
+            <div class="who"><div class="who-avatar">N</div><div><div class="who-name">Nakato S.</div><div class="who-loc">Mbarara</div></div></div>
+          </div>
+          <div class="proof-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>Affordable and stylish. Got the cap and sweater set for my shop and customers love the black and white look.</p>
+            <div class="who"><div class="who-avatar">I</div><div><div class="who-name">Ibrah K.</div><div class="who-loc">Jinja</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section wrap">
+        <div class="cta-block reveal">
+          <h2>Get <span class="x">EDDEN</span><br>Today.</h2>
+          <p class="sub">Order directly, or ask for EDDEN FASHION at your nearest boutique, shop, or market stall. Limited restock — don't wait on your size.</p>
+          <div class="contact-row">
+            <a href="tel:0707146478" class="contact-pill phone">📞 0707 146 478</a>
+            <span class="contact-pill">📍 Kampala, Uganda</span>
+            <span class="contact-pill">🏷️ EDDEN FASHION ™</span>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ================= SHOP PAGE ================= -->
+    <section class="page-panel" id="page-shop" data-page="shop">
+      <div class="wrap page-head reveal">
+        <span class="section-eyebrow">/// Full Catalogue</span>
+        <h1>The Shop.</h1>
+        <p>Every EDDEN piece, one place. Black or white, every item stamped with the original mark. Call or WhatsApp 0707 146 478 to order — we arrange delivery anywhere in Uganda.</p>
+      </div>
+
+      <section class="section wrap" style="padding-top:24px;">
+        <div class="grid">
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">CORE TEE</span><span class="price">UGX 35K</span></div>
+            <div class="name">Stamp Tee — Black</div>
+            <div class="desc">Heavyweight cotton tee with the EDDEN stamp across the chest. Built for everyday wear, holds shape wash after wash.</div>
+            <div class="meta"><span>Unisex · S–XXL</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">CORE TEE</span><span class="price">UGX 35K</span></div>
+            <div class="name">Stamp Tee — White</div>
+            <div class="desc">Same heavyweight cut in clean white, black EDDEN stamp. Pairs with anything in your wardrobe.</div>
+            <div class="meta"><span>Unisex · S–XXL</span><span class="swatches"><i class="swatch w"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">OUTERWEAR</span><span class="price">UGX 120K</span></div>
+            <div class="name">Crate Bomber Jacket</div>
+            <div class="desc">All-black bomber with the EDDEN crest stitched on the back panel. Boda-ready, durable through every season.</div>
+            <div class="meta"><span>Unisex · M–XXL</span><span class="swatches"><i class="swatch b"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">KNITWEAR</span><span class="price">UGX 95K</span></div>
+            <div class="name">Warehouse Sweater</div>
+            <div class="desc">Ribbed crewneck sweater, EDDEN logo on the chest. Built for Kampala's cool nights and harmattan-style mornings.</div>
+            <div class="meta"><span>Unisex · S–XL</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">HEADWEAR</span><span class="price">UGX 30K</span></div>
+            <div class="name">Stencil Snapback</div>
+            <div class="desc">Structured cap, embroidered EDDEN front panel. One size, adjustable strap, finishes any fit.</div>
+            <div class="meta"><span>One size</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">BUNDLE</span><span class="price">UGX 145K</span></div>
+            <div class="name">Tee + Cap Combo</div>
+            <div class="desc">Stamp Tee of your choice plus a Stencil Snapback, bundled at a better price than buying separately.</div>
+            <div class="meta"><span>Save UGX 20K</span><span class="swatches"><i class="swatch b"></i><i class="swatch w"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">BUNDLE</span><span class="price">UGX 195K</span></div>
+            <div class="name">Sweater + Tee Combo</div>
+            <div class="desc">Warehouse Sweater plus a Stamp Tee. Our most-gifted combo, ready for layering season.</div>
+            <div class="meta"><span>Save UGX 25K</span><span class="swatches"><i class="swatch b"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Order This — Call Now</a>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-top"><span class="tag">COMING SOON</span><span class="price">TBA</span></div>
+            <div class="name">Track Pants — Black</div>
+            <div class="desc">Tapered fit, side stripe, EDDEN wordmark at the hip. Drops next restock — ask your stockist to reserve one.</div>
+            <div class="meta"><span>Unisex · S–XXL</span><span class="swatches"><i class="swatch b"></i></span></div>
+            <a href="tel:0707146478" class="order-link">Ask About This</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap" style="padding-top:0;">
+        <div class="promo-strip reveal">
+          <div class="promo-cell"><span class="ic">🚚</span><span class="t">Free Delivery<small>Orders of 2+ items in Kampala</small></span></div>
+          <div class="promo-cell"><span class="ic">↩️</span><span class="t">Easy Exchange<small>Wrong size? Swap at any stockist</small></span></div>
+          <div class="promo-cell"><span class="ic">📦</span><span class="t">Ships Nationwide<small>Delivery arranged on every order</small></span></div>
+          <div class="promo-cell"><span class="ic">🏷️</span><span class="t">Trademarked Stock<small>Every piece carries the EDDEN mark</small></span></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================= WHY EDDEN PAGE ================= -->
+    <section class="page-panel" id="page-why" data-page="why">
+      <div class="wrap page-head reveal">
+        <span class="section-eyebrow">/// The Standard</span>
+        <h1>Why Uganda<br>Wears Edden.</h1>
+        <p>Four reasons EDDEN has gone from a Kampala idea to a name stocked in over 256 boutiques, shops, and market stalls nationwide.</p>
+      </div>
+
+      <section class="section wrap" style="padding-top:24px;">
+        <div class="why-grid reveal">
+          <div class="why-cell">
+            <span class="ix">01 / DURABLE</span>
+            <h3>Built To Last</h3>
+            <p>Heavyweight fabric, reinforced stitching. EDDEN pieces survive the boda ride, the market crowd, and the wash — every time.</p>
+          </div>
+          <div class="why-cell">
+            <span class="ix">02 / AFFORDABLE</span>
+            <h3>Priced For Everyone</h3>
+            <p>Latest fashion shouldn't cost a fortune. EDDEN keeps prices fair without cutting quality. No middlemen markups.</p>
+          </div>
+          <div class="why-cell">
+            <span class="ix">03 / EVERYWHERE</span>
+            <h3>In Every Market</h3>
+            <p>From boutiques to open markets across Uganda — if it's stocked near you, EDDEN is probably already there.</p>
+          </div>
+          <div class="why-cell">
+            <span class="ix">04 / ORIGINAL</span>
+            <h3>Registered Trademark</h3>
+            <p>Every EDDEN piece carries our protected mark. Accept no copies — look for the stamp.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap" style="padding-top:0;">
+        <div class="authentic reveal">
+          <div>
+            <span class="section-eyebrow">/// Verified Original</span>
+            <h2>Exclusively Legit.<br>Exclusively Edden.</h2>
+            <p>EDDEN FASHION is a registered trademark — every tee, jacket, sweater and cap we make carries our official mark. We are built different, and we stand behind every stitch with our name and our copyright.</p>
+          </div>
+          <div class="seal">
+            <div class="seal-inner">
+              <span class="e">E</span>
+              <small>EDDEN ™ 2026</small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================= STOCKISTS PAGE ================= -->
+    <section class="page-panel" id="page-stockists" data-page="stockists">
+      <div class="wrap page-head reveal">
+        <span class="section-eyebrow">/// Where To Find Us</span>
+        <h1>From Kampala<br>To Every Corner.</h1>
+        <p>EDDEN FASHION is stocked in boutiques, shops, and open markets right across Uganda. Wherever you shop, ask for EDDEN by name.</p>
+      </div>
+
+      <section class="section wrap" style="padding-top:24px;">
+        <div class="avail">
+          <div class="avail-copy reveal">
+            <h2>Always Close By.</h2>
+            <p>You don't need to travel far for the original. EDDEN is already in the market or boutique you walk past every day.</p>
+            <ul class="avail-list">
+              <li><span class="check">✓</span> Boutiques in every major town</li>
+              <li><span class="check">✓</span> Open-air markets nationwide</li>
+              <li><span class="check">✓</span> Direct order via phone — delivery arranged</li>
+              <li><span class="check">✓</span> Headquartered in Kampala, Uganda</li>
+            </ul>
+          </div>
+          <div class="map-card reveal">
+            <div class="loc-badge">● Headquarters</div>
+            <h3>Kampala, Uganda</h3>
+            <div class="pin-grid">
+              <div class="pin"><div class="city">Kampala</div><span class="tag">HQ / Stockists</span></div>
+              <div class="pin"><div class="city">Jinja</div><span class="tag">Market Stalls</span></div>
+              <div class="pin"><div class="city">Mbarara</div><span class="tag">Boutiques</span></div>
+              <div class="pin"><div class="city">Gulu</div><span class="tag">Boutiques</span></div>
+              <div class="pin"><div class="city">Mbale</div><span class="tag">Market Stalls</span></div>
+              <div class="pin"><div class="city">Nationwide</div><span class="tag">And Growing</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================= CONTACT / ORDER PAGE ================= -->
+    <section class="page-panel" id="page-contact" data-page="contact">
+      <div class="wrap page-head reveal">
+        <span class="section-eyebrow">/// Order Now</span>
+        <h1>Get <span style="color:var(--stamp)">EDDEN</span> Today.</h1>
+        <p>Order directly, or ask for EDDEN FASHION at your nearest boutique, shop, or market stall. We arrange delivery anywhere in Uganda.</p>
+      </div>
+
+      <section class="section wrap" style="padding-top:24px;">
+        <div class="cta-block reveal">
+          <h2>Call. Order.<br><span class="x">Wear It.</span></h2>
+          <p class="sub">One phone call gets you genuine EDDEN — no resellers, no markups, no fakes. Limited restock on most lines, so don't wait on your size.</p>
+          <div class="contact-row">
+            <a href="tel:0707146478" class="contact-pill phone">📞 0707 146 478</a>
+            <span class="contact-pill">📍 Kampala, Uganda</span>
+            <span class="contact-pill">🏷️ EDDEN FASHION ™</span>
+            <span class="contact-pill">🕒 Mon–Sat, 8AM–7PM</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap" style="padding-top:0;">
+        <div class="promo-strip reveal">
+          <div class="promo-cell"><span class="ic">📞</span><span class="t">Call Or WhatsApp<small>0707 146 478 — fastest response</small></span></div>
+          <div class="promo-cell"><span class="ic">🚚</span><span class="t">Delivery Arranged<small>Anywhere in Uganda, on request</small></span></div>
+          <div class="promo-cell"><span class="ic">🤝</span><span class="t">Wholesale Welcome<small>Stocking your shop? Ask about rates</small></span></div>
+          <div class="promo-cell"><span class="ic">🏷️</span><span class="t">Genuine Guarantee<small>Registered trademark, est. 2026</small></span></div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">EDDEN<span>.</span></div>
+        <div class="foot-tag">Built Different — Made For Uganda</div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Shop</h4>
+          <button onclick="gotoPage('shop')">T-Shirts</button>
+          <button onclick="gotoPage('shop')">Jackets</button>
+          <button onclick="gotoPage('shop')">Sweaters</button>
+          <button onclick="gotoPage('shop')">Caps</button>
+        </div>
+        <div class="foot-col">
+          <h4>Brand</h4>
+          <button onclick="gotoPage('why')">Why Edden</button>
+          <button onclick="gotoPage('stockists')">Stockists</button>
+          <button onclick="gotoPage('why')">Authenticity</button>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <span>0707 146 478</span>
+          <span>Kampala, Uganda</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 EDDEN FASHION. All Rights Reserved.</span>
+      <span>EDDEN FASHION™ is a Registered Trademark.</span>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- page switching (SPA-style, single file) ----------
+    function gotoPage(name, opts){
+      const panel = document.getElementById('page-' + name);
+      if(!panel) return;
+
+      document.querySelectorAll('.page-panel').forEach(p=>{
+        p.classList.toggle('active', p.dataset.page === name);
+      });
+      document.querySelectorAll('.nav-links button[data-page], .mobile-menu button[data-page]').forEach(b=>{
+        const on = b.dataset.page === name;
+        b.classList.toggle('active', on);
+        if(on){ b.setAttribute('aria-current','page'); } else { b.removeAttribute('aria-current'); }
+      });
+
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('navBurger').setAttribute('aria-expanded','false');
+
+      if(!opts || !opts.silent){
+        // keep the URL shareable without triggering a native jump
+        if(history.replaceState){ history.replaceState(null, '', '#' + name); }
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+      revealCheck();
+    }
+
+    function toggleMobileMenu(){
+      const menu = document.getElementById('mobileMenu');
+      const open = menu.classList.toggle('open');
+      document.getElementById('navBurger').setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    // close the mobile menu with Escape
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        document.getElementById('mobileMenu').classList.remove('open');
+        document.getElementById('navBurger').setAttribute('aria-expanded','false');
+      }
+    });
+
+    // ---------- scroll reveal (re-checks after page switch too) ----------
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+
+    function revealCheck(){
+      document.querySelectorAll('.reveal:not(.in)').forEach(el=>obs.observe(el));
+    }
+    revealCheck();
+
+    // ---------- deep-link support: open the page named in the URL hash ----------
+    (function(){
+      const initial = (location.hash || '').replace('#','');
+      if(initial && document.getElementById('page-' + initial)){
+        gotoPage(initial, {silent:true});
+      }
+    })();
+  </script>
+
+</body>
+</html>
